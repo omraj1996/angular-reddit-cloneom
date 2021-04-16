@@ -27,11 +27,11 @@ export class AuthService {
   }
 
   signup(signupRequestPayload: SignupRequestPayload): Observable<any> {
-    return this.httpClient.post(this.baseUrl+'/api/auth/signup', signupRequestPayload, { responseType: 'text' });
+    return this.httpClient.post(this.baseUrl+'api/auth/signup', signupRequestPayload, { responseType: 'text' });
   }
 
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
-    return this.httpClient.post<LoginResponse>(this.baseUrl+'/api/auth/login',
+    return this.httpClient.post<LoginResponse>(this.baseUrl+'api/auth/login',
       loginRequestPayload).pipe(map(data => {
         this.localStorage.store('authenticationToken', data.authenticationToken);
         this.localStorage.store('username', data.username);
@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.httpClient.post<LoginResponse>(this.baseUrl+'/api/auth/refresh/token',
+    return this.httpClient.post<LoginResponse>(this.baseUrl+'api/auth/refresh/token',
       this.refreshTokenPayload)
       .pipe(tap(response => {
         this.localStorage.clear('authenticationToken');
@@ -62,7 +62,7 @@ export class AuthService {
   }
 
   logout() {
-    this.httpClient.post(this.baseUrl+'/api/auth/logout', this.refreshTokenPayload,
+    this.httpClient.post(this.baseUrl+'api/auth/logout', this.refreshTokenPayload,
       { responseType: 'text' })
       .subscribe(data => {
         console.log(data);

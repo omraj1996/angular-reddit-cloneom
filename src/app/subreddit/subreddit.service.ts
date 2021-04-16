@@ -12,15 +12,15 @@ export class SubredditService {
   constructor(private http: HttpClient) { }
 
   getAllSubreddits(): Observable<Array<SubredditModel>> {
-    return this.http.get<Array<SubredditModel>>(this.baseUrl + '/api/subreddit');
+    return this.http.get<Array<SubredditModel>>(this.baseUrl + 'api/subreddit');
   }
 
   createSubreddit(subredditModel: SubredditModel): Observable<SubredditModel> {
-    return this.http.post<SubredditModel>(this.baseUrl + '/api/subreddit',
+    return this.http.post<SubredditModel>(this.baseUrl + 'api/subreddit',
       subredditModel);
   }
 
   getSubreddit(id: number): Observable<SubredditModel> {
-    return this.http.get<SubredditModel>(this.baseUrl + '/api/subreddit/' + id);
+    return this.http.get<SubredditModel>(this.baseUrl + 'api/subreddit/' + id);
   }
 }
